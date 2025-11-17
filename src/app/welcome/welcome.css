@@ -1,0 +1,22 @@
+.welcome {
+    display :flex;
+    height : 100vh;
+    background: #ffffff;
+
+
+}
+/*left-section*/
+.left-section{
+    width: 40%;
+    background: #4c0a9c;
+    color: white;
+    padding: 60px;
+    /*display: flex;*/
+    flex-direction: column;
+    justify-content: center;
+}
+.right-section {
+  width: 60%;
+  padding: 60px;
+}
+
