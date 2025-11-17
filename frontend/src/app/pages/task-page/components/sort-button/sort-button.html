@@ -1,0 +1,10 @@
+<button (click)="isOpen = !isOpen">
+  Sort ▼
+</button>
+
+<div @if(isOpen) class="dropdown-menu">
+    <ul>
+        <li @if(sortType === Direction.byDateASC)>✓</li>
+        <li @if(sortType === Direction.byDateDESC)>✓</li>
+    </ul>
+</div>

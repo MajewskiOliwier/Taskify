@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskPage } from './task-page';
+import { SortButton } from './components/sort-button/sort-button';
+import { TaskItem } from './components/task-item/task-item';
 
 describe('TaskPage', () => {
   let component: TaskPage;
@@ -8,7 +10,7 @@ describe('TaskPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskPage]
+      imports: [TaskPage, SortButton, TaskItem],
     })
     .compileComponents();
 
