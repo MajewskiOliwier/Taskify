@@ -22,5 +22,5 @@ export class Forgotpassword {
 
     this.message = 'A reset email has been sent to' + this.email;
   }
-
+ 
 }

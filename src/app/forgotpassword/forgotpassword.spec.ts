@@ -20,4 +20,5 @@ describe('Forgotpassword', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

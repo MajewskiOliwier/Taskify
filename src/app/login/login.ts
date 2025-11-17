@@ -15,5 +15,4 @@ export class Login {
   switchToForgot() {
     this.changeView.emit('forgot');
   }
-
 }

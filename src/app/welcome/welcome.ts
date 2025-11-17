@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from "../login/login";
 import { Register } from '../register/register';
+import { Forgotpassword } from "../forgotpassword/forgotpassword";
 
 
 @Component({
