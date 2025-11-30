@@ -11,9 +11,11 @@ export interface TaskDto {
 @Injectable({providedIn: 'root'})
 export class TaskService {
     constructor(private http: HttpClient) {}
+  
+    private apiUrl = 'http://localhost:3000/task';
 
     getTasks(): Observable<TaskDto[]> {
-      return this.http.get<TaskDto[]>("/api/tasks"); //1 is userID placeholder
+        return this.http.get<TaskDto[]>(`${this.apiUrl}/9f19a285-ce0b-11f0-a7ff-0a4c0216a5eb`);
     }
 
     // addTask(task: Omit<TaskDto, 'id'>): Observable<TaskDto> {
