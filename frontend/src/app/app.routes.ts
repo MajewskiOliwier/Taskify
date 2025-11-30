@@ -6,11 +6,13 @@ import { WelcomePage } from './pages/welcome-page/welcome-page';
 import { RegisterPage } from './pages/register-page/register-page';
 import { SettingsPage } from './pages/settings-page/settings-page';
 import { HomePage } from './pages/home-page/home-page';
+import { NotFoundPage } from './pages/not-found-page/not-found-page';
+import { StartRedirect } from './shared/components/start-redirect/start-redirect';    
 
 export const routes: Routes = [
     {
-        path: "",
-        redirectTo: 'welcome',
+        path: '',
+        component: StartRedirect,
         pathMatch: 'full'
     },
     {
@@ -20,12 +22,12 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        component: Home
+        component: HomePage
         //logged default page
     },
     {
         path: 'settings',
-        component: Settings
+        component: SettingsPage
     },
     {
         path: 'team/:teamId',
@@ -42,42 +44,9 @@ export const routes: Routes = [
     {
         path: 'register',
         component: RegisterPage        
+    },
+    {
+        path: '**',
+        component: NotFoundPage
     }
 ];
-    // export const routes: Routes = [
-    //     {
-    //         path: "",
-    //         redirectTo: 'WelcomePage',
-    //         pathMatch: 'full'
-    //     },
-    //     {
-    //         path: 'welcome',
-    //         component: WelcomePage
-    //         //no logged default page
-    //     },
-    //     {
-    //         path: 'home',
-    //         component: Home
-    //         //logged default page
-    //     },
-    //     {
-    //         path: 'settings',
-    //         component: Settings
-    //     },
-    //     {
-    //         path: 'team/:teamId',
-    //         component: TeamPage
-    //     },
-    //     {
-    //         path: 'team/:teamID/task/:taskID',
-    //         component: TaskPage
-    //     },
-    //     {
-    //         path: 'login',
-    //         component: LoginPage        
-    //     },
-    //     {
-    //         path: 'register',
-    //         component: RegisterPage        
-    //     }
-    // ];
