@@ -2,9 +2,21 @@
   Sort ▼
 </button>
 
-<div @if(isOpen) class="dropdown-menu">
+@if (isOpen) {
+  <div class="dropdown-menu">
     <ul>
-        <li @if(sortType === Direction.byDateASC)>✓</li>
-        <li @if(sortType === Direction.byDateDESC)>✓</li> 
+      <li>
+        @if (sortType === Direction.byDateASC) {
+          ✓
+        }
+        By Date Ascending
+      </li>
+      <li>
+        @if (sortType === Direction.byDateDESC) {
+          ✓
+        }
+        By Date Descending
+      </li> 
     </ul>
-</div>
+  </div>
+}

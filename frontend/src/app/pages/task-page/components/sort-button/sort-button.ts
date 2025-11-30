@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
 export class SortButton {
   isOpen: boolean = false;
   sortType: Direction = Direction.byDateASC;
+
+  Direction = Direction;
 }
 
 enum Direction {
