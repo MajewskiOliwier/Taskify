@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TaskDto } from '../../../../services/taskService/task-service';
 
 @Component({
   selector: 'app-task-item',
@@ -9,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class TaskItem {
   isExpaned: boolean = true;
+  @Input() task!: TaskDto;
 }

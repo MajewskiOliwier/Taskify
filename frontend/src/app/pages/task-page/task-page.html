@@ -1,14 +1,19 @@
 <main>
-    <app-header></app-header>
-    
-    <div id="TeamHeader">
-        <app-sort-button></app-sort-button>    
-    </div>
+    @if (loading) {
+        <div>Loading...</div>
+    } @else if (tasks.length === 0) {
+        <div>Empty</div>
+    } @else {
+        <app-header></app-header>
+        
+        <div id="TeamHeader">
+            <app-sort-button></app-sort-button>    
+        </div>
 
-    <!-- will be filled with the "<app-task-item>" -->
-    <div id="TaskContainer">  
-        <app-task-item></app-task-item>
-    </div>
+        @for (task of tasks; track task.id) {
+            <app-task-item [task]="task"></app-task-item>
+        }
 
-    <app-footer></app-footer>
+        <app-footer></app-footer>
+    }
 </main>
