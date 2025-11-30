@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './register-page.html',
   styleUrl: './register-page.css',
 })
+
 export class RegisterPage implements OnInit {
   registerForm!: FormGroup;
   errorMessage: string = '';

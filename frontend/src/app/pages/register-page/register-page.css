@@ -1,3 +1,4 @@
+/* Oliwiers Changes */
 .register-page-container {
   display: flex;
   justify-content: center;
@@ -127,3 +128,32 @@
   background: #667eea;
   color: white;
 }
+  
+  
+/* Carlos changes */
+/* .register-box {
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.register-box h2 {
+  margin-bottom: 15px;
+}
+
+
+.register-box li {
+  margin-bottom: 8px;
+}
+
+.register-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px; 
+  border: none;
+  background: #eeeeef;
+  color: #4c0a9c;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer; 
+}*/

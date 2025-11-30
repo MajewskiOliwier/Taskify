@@ -14,3 +14,19 @@ export class Register {
     this.router.navigate(['/register']);
   }
 }
+
+//OLD
+
+// @Component({
+//   selector: 'app-register-section',
+//   imports: [],
+//   templateUrl: './register-section.html',
+//   styleUrl: './register-section.css',
+// })
+// export class RegisterSection {
+//   //  @Output() changeView = new EventEmitter<string>();
+
+//   // goToLogin() {
+//   //   this.changeView.emit('login');
+//   // }
+// }

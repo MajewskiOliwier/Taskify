@@ -1,11 +1,11 @@
-    import { Routes } from '@angular/router';
-    import { Home } from './pages/home/home';
-    import { Settings } from './pages/settings/settings';
-    import { TeamPage } from './pages/team-page/team-page';
-    import { LoginPage } from './pages/login-page/login-page';
-    import { TaskPage } from './pages/task-page/task-page';
-    import { WelcomePage } from './pages/welcome-page/welcome-page';
-    import { RegisterPage } from './pages/register-page/register-page';
+import { Routes } from '@angular/router';
+import { TeamPage } from './pages/team-page/team-page';
+import { LoginPage } from './pages/login-page/login-page';
+import { TaskPage } from './pages/task-page/task-page';
+import { WelcomePage } from './pages/welcome-page/welcome-page';
+import { RegisterPage } from './pages/register-page/register-page';
+import { SettingsPage } from './pages/settings-page/settings-page';
+import { HomePage } from './pages/home-page/home-page';
 
 export const routes: Routes = [
     {
