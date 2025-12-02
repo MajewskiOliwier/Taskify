@@ -8,6 +8,13 @@ module.exports = {
         });
     },
 
+    getProjectTasks: (req, res) => {
+        Task.getProjectTasks(req.params.userID, req.params.projectID, (err, results) => {
+            if (err) return res.status(500).json(err);
+            res.json(results);
+        });
+    },
+
     create: (req, res) => {
         const { title, description, list_id } = req.body;
         Task.create(title, description, list_id, (err, result) => {

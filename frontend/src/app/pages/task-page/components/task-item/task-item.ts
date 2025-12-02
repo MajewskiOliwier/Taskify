@@ -8,6 +8,7 @@ import { TaskDto } from '../../../../services/taskService/task-service';
   styleUrl: './task-item.css',
   standalone: true
 })
+
 export class TaskItem {
   isExpaned: boolean = true;
   @Input() task!: TaskDto;

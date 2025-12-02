@@ -29,7 +29,7 @@ export class TaskPage implements OnInit{
   loadTasks(): void {
     this.loading = true;
 
-    this.taskService.getTasks().subscribe({
+    this.taskService.getUserAsssignedTasks().subscribe({
       next: (data) => {
         this.tasks = data;
         this.loading = false;
