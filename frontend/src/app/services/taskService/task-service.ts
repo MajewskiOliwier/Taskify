@@ -19,7 +19,7 @@ export class TaskService {
     }
 
     getProjectTasks(): Observable<TaskDto[]> {
-        return this.http.get<TaskDto[]>(`${this.apiUrl}/9f19a285-ce0b-11f0-a7ff-0a4c0216a5eb`);
+        return this.http.get<TaskDto[]>(`${this.apiUrl}/9f19a285-ce0b-11f0-a7ff-0a4c0216a5eb/project/1/assigned`);
     }
     
     // addTask(task: Omit<TaskDto, 'id'>): Observable<TaskDto> {
