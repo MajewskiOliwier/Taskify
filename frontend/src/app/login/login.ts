@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Output, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Output, EventEmitter } from '@angular/core';
 //import { Forgotpassword } from '../forgotpassword/forgotpassword';
 
 
@@ -10,6 +11,28 @@ import {Output, EventEmitter } from '@angular/core';
   styleUrls: ['./login.css'],
 })
 export class Login {
+
+  email = '';
+  password = '';
+
+  constructor(private http: HttpClient) {}
+
+  login() {
+    const url = 'http://localhost:3000/api/auth/login';
+    this.http.post(url, { email: this.email, password: this.password }, { withCredentials: true })
+      .subscribe({
+        next: (res: any) => {
+          console.log('Login ok', res);
+        },
+        error: err => console.error('Login error', err)
+      });
+  }
+
+  logout() {
+    const url = 'http://localhost:3000/api/auth/logout';
+    this.http.post(url, {}, { withCredentials: true })
+      .subscribe(() => console.log('Logged out'));
+  }
 
   // @Output() changeView = new EventEmitter<string>();
 
