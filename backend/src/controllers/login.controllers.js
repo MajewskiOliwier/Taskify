@@ -48,9 +48,16 @@ router.post('/login', (req, res) => {
             { expiresIn: '1h' } // Le token expire après 1 heure
         );
 
-        // 4. Succès: Renvoie le token et l'ID de l'utilisateur au Front-end
+        // 4. Succès: Met le token dans un cookie HttpOnly et renvoie l'ID
+        const cookieOptions = {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 1000 // 1 heure
+        };
+
+        res.cookie('token', token, cookieOptions);
         res.status(200).json({ 
-            token: token, 
             userId: user.id,
             message: 'Connexion réussie.'
         });
@@ -96,5 +103,18 @@ router.post('/register', async (req, res) => {
     }
 });
 
+
+/**
+ * POST /api/auth/logout
+ * Supprime le cookie d'authentification.
+ */
+router.post('/logout', (req, res) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax'
+    });
+    res.status(200).json({ message: 'Déconnexion réussie.' });
+});
 
 module.exports = router;
