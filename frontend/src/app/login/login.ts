@@ -17,8 +17,11 @@ export class Login {
 
   constructor(private http: HttpClient) {}
 
-  login() {
-    const url = 'http://localhost:3000/api/auth/login';
+  login(email?: string, password?: string) {
+    this.email = email ?? this.email;
+    this.password = password ?? this.password;
+
+    const url = 'http://localhost:3306/api/auth/login';
     this.http.post(url, { email: this.email, password: this.password }, { withCredentials: true })
       .subscribe({
         next: (res: any) => {
@@ -29,7 +32,7 @@ export class Login {
   }
 
   logout() {
-    const url = 'http://localhost:3000/api/auth/logout';
+    const url = 'http://localhost:3306/api/auth/logout';
     this.http.post(url, {}, { withCredentials: true })
       .subscribe(() => console.log('Logged out'));
   }
