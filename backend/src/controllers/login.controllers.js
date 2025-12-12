@@ -13,6 +13,7 @@ module.exports = {
             return res.status(400).json({ message: 'Email et mot de passe sont requis.' });
         }
 
+
         User.findByEmail(email, async (err, results) => {
             if (err) {
                 console.error('Erreur lors de la recherche de l\'utilisateur:', err);
@@ -25,7 +26,7 @@ module.exports = {
 
             const user = results[0];
             
-            const passwordMatch = await bcrypt.compare(password, user.password);
+            const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
             if (!passwordMatch) {
                 return res.status(401).json({ message: 'Identifiants invalides.' });
