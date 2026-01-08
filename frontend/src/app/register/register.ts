@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  //imports: [],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrls: ['./register.css'],
 })
 export class Register { 
+  constructor(private router: Router) {}
 
-  //  @Output() changeView = new EventEmitter<string>();
-
-  // goToLogin() {
-  //   this.changeView.emit('login');
-  // }
+  goToRegister(): void {
+    this.router.navigate(['/register']);
+  }
 }
