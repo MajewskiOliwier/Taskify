@@ -13,7 +13,7 @@ module.exports = {
         db.query(query, [userID], callback);
     },
 
-    getProjectTasks: (userID, projectID, callback) => { 
+    getProjectTasks: (userID, projectID, callback) => {
         const query = `
             SELECT t.* , c.name AS column_name, b.name AS board_name, p.name AS project_name
             FROM USER u
@@ -31,21 +31,18 @@ module.exports = {
         db.query(query, [userID, projectID], callback);
     },
 
-    getAssignedTasksFromProject: (userID, projectID, callback) => { 
+    getAssignedTasksFromProject: (userID, projectID, callback) => {
         const query = `
-            SELECT t.*,
-                c.title AS column_name,
-                b.name  AS board_name,
-                p.name  AS project_name
+            SELECT t.* , c.title AS column_title, b.name AS board_name, p.name AS project_name
             FROM USER u
             INNER JOIN BELONGS_TO bt ON u.id_user = bt.id_user
-            INNER JOIN BOARD b       ON b.id_board = bt.id_board
-            INNER JOIN OWNS o        ON b.id_board = o.id_board
-            INNER JOIN PROJECT p     ON p.id_project = o.id_project
-            INNER JOIN HAS h         ON b.id_board = h.id_board
-            INNER JOIN COLONNE c     ON c.id_COLONNE = h.id_COLONNE
+            INNER JOIN BOARD b ON b.id_board = bt.id_board
+            INNER JOIN OWNS o ON b.id_board = o.id_board
+            INNER JOIN PROJECT p ON p.id_project = o.id_project
+            INNER JOIN HAS h ON b.id_board = h.id_board
+            INNER JOIN COLONNE c ON c.id_COLONNE = h.id_COLONNE
             INNER JOIN CONTAINS_TASK ct ON c.id_COLONNE = ct.id_COLONNE
-            INNER JOIN TASK t        ON t.id_task = ct.id_task
+            INNER JOIN TASK t ON t.id_task = ct.id_task
             INNER JOIN ASSIGNED_TO at ON at.id_task = t.id_task AND at.id_user = u.id_user
             WHERE u.id_user = ? AND p.id_project = ?
         `;
@@ -59,5 +56,56 @@ module.exports = {
             [title, description, listId],
             callback
         );
-    }
+    },
+
+    addTaskHistoryLog: (id_task, action, details, callback) => {
+        const id_history = uuid();
+        const created_at = new Date();
+
+        const insertHistory = `
+            INSERT INTO TASK_HISTORY (id_history, action, details, created_at)
+            VALUES (?,?,?,?)
+        `;
+
+        const insertGenerates = `
+            INSERT INTO GENERATES (id_history, id_task) VALUES (? , ?)
+        `
+        db.beginTransaction(err => {
+            if (err) return callback(err);
+
+            db.query(
+                insertHistory,
+                [id_history, action, details, created_at],
+                (err1) => {
+                    return db.rollback(() => callback(err1));
+                }
+            );
+
+            db.query(
+                insertGenerates,
+                [id_history, id_task],
+                (err2) => {
+                    if (err2) {
+                        return db.rollback(() => callback(err2));
+                    }
+
+                    db.commit(err3 => {
+                        if (err3) {
+                            return db.rollback(() => callback(err3));
+                            callback(null, { id_history, task_ID: id_task })
+                        }
+                    });
+                }
+            );
+        });
+    },
+
+    addAttachmentToTask: (filename, mime_type, size_bytes, created_at, callback) => {
+        db.query(
+            "INSERT INTO ATTACHMENT (filename, mime_type, size_bytes, created_at) VALUES (?, ?, ?, ?)",
+            [filename, mime_type, size_bytes, created_at],
+            callback
+        );
+    },
+
 };
