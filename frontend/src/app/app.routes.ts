@@ -10,7 +10,7 @@ import { RegisterPage } from './pages/register-page/register-page';
 export const routes: Routes = [
     {
         path: "",
-        redirectTo: 'WelcomePage',
+        redirectTo: 'welcome',
         pathMatch: 'full'
     },
     {
