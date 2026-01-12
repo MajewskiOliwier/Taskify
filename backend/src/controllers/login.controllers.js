@@ -87,5 +87,24 @@ module.exports = {
             sameSite: 'lax'
         });
         res.status(200).json({ message: 'Déconnexion réussie.' });
+    },
+
+    verifyToken: (req, res) => {
+        const token = req.cookies.token;
+
+        if (!token) {
+            return res.status(401).json({ authenticated: false, message: 'No token provided.' });
+        }
+
+        try {
+            const decoded = jwt.verify(token, JWT_SECRET);
+            res.status(200).json({ 
+                authenticated: true, 
+                userId: decoded.id, 
+                email: decoded.email 
+            });
+        } catch (err) {
+            res.status(401).json({ authenticated: false, message: 'Invalid or expired token.' });
+        }
     }
 };
