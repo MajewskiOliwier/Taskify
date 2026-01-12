@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Output, EventEmitter } from '@angular/core';
 //import { Forgotpassword } from '../forgotpassword/forgotpassword';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,10 @@ export class Login {
   email = '';
   password = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   login(email?: string, password?: string) {
     this.email = email ?? this.email;
@@ -26,6 +29,10 @@ export class Login {
       .subscribe({
         next: (res: any) => {
           console.log('Login ok', res);
+          
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000);
         },
         error: err => console.error('Login error', err)
       });
