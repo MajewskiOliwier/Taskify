@@ -1,0 +1,25 @@
+.team-item {
+  padding: 16px;
+  border-radius: 10px;
+  background: #1e1e2e;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.team-item:hover {
+  background: #2a2a40;
+  transform: translateY(-2px);
+}
+
+.team-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.team-description {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.8;
+}

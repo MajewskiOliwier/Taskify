@@ -21,7 +21,7 @@ export const routes: Routes = [
         //no logged default page
     },
     {
-        path: 'home/:userId',
+        path: 'home/:userID',
         component: HomePage
         //logged default page
     },

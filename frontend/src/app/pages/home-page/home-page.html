@@ -1,1 +1,20 @@
-<p>home-page works!</p>
+<div class="home-container">
+
+  <h1>Your Teams</h1>
+
+  @if (isLoading) {
+    <div>Loading teams...</div>
+
+  } @else if (teams.length > 0) {
+
+    <div class="team-list">
+      @for (team of teams; track team.id_board) {
+        <app-team-list-item [team]="team"></app-team-list-item>
+      }
+    </div>
+
+  } @else {
+    <p>You are not a member of any team yet.</p>
+  }
+
+</div>

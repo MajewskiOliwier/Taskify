@@ -11,10 +11,11 @@ module.exports = {
 
     getParticipatingTeams: (userID, callback) =>{
         const getQuery = `
-            SELECT b.*
+        SELECT b.*
             FROM USER u
             INNER JOIN board_member member ON u.id_user = member.id_user
             INNER JOIN BOARD b ON member.id_board = b.id_board
+            WHERE u.id_user = ?
         `;
 
         db.query(getQuery, [userID], callback);

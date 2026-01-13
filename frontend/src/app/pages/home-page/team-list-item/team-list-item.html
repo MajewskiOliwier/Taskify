@@ -1,0 +1,11 @@
+<div class="team-item" (click)="openTeam()">
+  <div class="team-header">
+    <h3 class="team-name">{{ team.name }}</h3>
+  </div>
+
+  @if (team.description) {
+    <p class="team-description">
+      {{ team.description }}
+    </p>
+  }
+</div>
