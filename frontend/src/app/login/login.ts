@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   //imports: [],
   templateUrl: './login.html',
-  styleUrls: ['./login.css'],
+  styleUrls: [],
 })
 export class Login {
 

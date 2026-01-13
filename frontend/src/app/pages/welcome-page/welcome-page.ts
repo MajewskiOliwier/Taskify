@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 // Current changes:
 // import { Welcome } from '../../welcome/welcome';
-// import { HttpClient } from '@angular/common/http';
-// import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // @Component({
 //   selector: 'app-welcome-page',
 //   imports: [Welcome],
 
 import { Forgotpassword } from '../../shared/components/forgotpassword/forgotpassword';
-import { RegisterSection } from "./components/register-section/register-section";
 import { LoginSection } from "./components/login-section/login-section";
+import { RegisterSection } from './components/register-section/register-section';
 
 @Component({
   selector: 'app-welcome-page',
@@ -21,6 +21,9 @@ import { LoginSection } from "./components/login-section/login-section";
 })
 
 export class WelcomePage implements OnInit {
+  title! : string;
+  description!: string;
+  imageUrl!: string;
 
   constructor(
     private http: HttpClient,
@@ -29,6 +32,8 @@ export class WelcomePage implements OnInit {
 
   ngOnInit(): void {
     this.checkAuthentication();
+    this.title = "WELCOME ON TASKIFY";
+    this.description = "Let's Manage your project's Tasks simply"
   }
 
   checkAuthentication() {
@@ -45,16 +50,5 @@ export class WelcomePage implements OnInit {
           console.log('No valid token, staying on welcome page');
         }
       });
-
-    // old?
-    // title! : string;
-    // description!: string;
-    // imageUrl!: string;
-  
-    // ngOnInit(): void{
-    //   this.title = "WELCOME ON TASKIFY";
-    //   this.description = "Let's Manage your project's Tasks simply"
-      
-    // }
   }
 }
