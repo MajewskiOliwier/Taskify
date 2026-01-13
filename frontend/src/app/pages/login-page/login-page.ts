@@ -28,10 +28,10 @@ export class LoginPage {
     this.http.post(url, { email: this.email, password: this.password }, { withCredentials: true })
       .subscribe({
         next: (res: any) => {
-          console.log('Login ok', res);
+          console.log('Login ok with id:'+ res.userId, res);
           
           setTimeout(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/welcome']);
           }, 2000);
         },
         error: err => console.error('Login error', err)

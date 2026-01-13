@@ -37,13 +37,18 @@ export class WelcomePage implements OnInit {
   }
 
   checkAuthentication() {
-    const url = 'http://localhost:3306/api/auth/verify';
+    const url = 'http://localhost:3000/api/auth/verify';
     this.http.get(url, { withCredentials: true })
       .subscribe({
         next: (res: any) => {
           if (res.authenticated) {
-            console.log('User already authenticated, redirecting...');
-            this.router.navigate(['/login']);
+          
+          console.log(
+            'User with ID: already authenticated, redirecting...'
+          );          
+          console.log(res);  
+          
+          this.router.navigate(['/home/'+res.userId]);
           }
         },
         error: (err) => {

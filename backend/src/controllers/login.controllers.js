@@ -33,7 +33,7 @@ module.exports = {
             }
 
             const token = jwt.sign(
-                { id: user.id, email: user.email },
+                { id: user.id_user, email: user.email },
                 JWT_SECRET,
                 { expiresIn: '1h' }
             );
@@ -47,8 +47,8 @@ module.exports = {
 
             res.cookie('token', token, cookieOptions);
             res.status(200).json({ 
-                userId: user.id,
-                message: 'Connexion réussie.'
+                userId: user.userId,
+                message: 'Connexion réussie.' + user.userId 
             });
         });
     },
@@ -93,17 +93,22 @@ module.exports = {
         const token = req.cookies.token;
 
         if (!token) {
+            console.log("Verification: FAILED NO TOKEN");
             return res.status(401).json({ authenticated: false, message: 'No token provided.' });
         }
 
         try {
             const decoded = jwt.verify(token, JWT_SECRET);
+
+            console.log("Verification: ID"+decoded.id + " for email:"+ decoded.email);
+
             res.status(200).json({ 
                 authenticated: true, 
                 userId: decoded.id, 
                 email: decoded.email 
             });
         } catch (err) {
+            console.log("Verification: FAILED ERROR while verifying");
             res.status(401).json({ authenticated: false, message: 'Invalid or expired token.' });
         }
     }

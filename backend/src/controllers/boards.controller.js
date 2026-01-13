@@ -14,5 +14,12 @@ module.exports = {
             if (err) return res.status(500).json(err);
             res.json({ id: result.insertId, name });
         });
-    }
+    },
+
+    getUserBoard: (req, res) => {
+        Board.getParticipatingTeams(req.params.userID, (err, results) => {
+            if (err) return res.status(500).json(err);
+            res.json(results);
+        });
+    },
 };
