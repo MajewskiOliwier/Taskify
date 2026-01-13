@@ -24,7 +24,7 @@ export class LoginPage {
     this.email = email ?? this.email;
     this.password = password ?? this.password;
 
-    const url = 'http://localhost:3306/api/auth/login';
+    const url = 'http://localhost:3000/api/auth/login';
     this.http.post(url, { email: this.email, password: this.password }, { withCredentials: true })
       .subscribe({
         next: (res: any) => {
@@ -39,7 +39,7 @@ export class LoginPage {
   }
 
   logout() {
-    const url = 'http://localhost:3306/api/auth/logout';
+    const url = 'http://localhost:3000/api/auth/logout';
     this.http.post(url, {}, { withCredentials: true })
       .subscribe(() => console.log('Logged out'));
   }

@@ -16,7 +16,7 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
   isLoading: boolean = false;
-  private readonly apiUrl = 'http://localhost:3306/api/auth/register';
+  private readonly apiUrl = 'http://localhost:3000/api/auth/register';
 
   constructor(
     private fb: FormBuilder,

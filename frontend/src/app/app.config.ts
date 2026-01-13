@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
 
     //OLD???
 
-    // importProvidersFrom(HttpClientModule)
+    // importProvidersFrom(HttpClientModule),
 
     provideHttpClient()  
   ]

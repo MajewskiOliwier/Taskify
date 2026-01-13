@@ -29,12 +29,10 @@ app.use(cookieParser());
 app.use("/boards", boardsRoutes);
 app.use("/lists", listsRoutes);
 app.use("/cards", cardsRoutes);
+app.use('/task', tasksRoutes);
 
 // Carlos app use
 app.use('/api/auth', authRoutes);
-
-//Oliwiers old app use
-//// app.use('/task', tasksRoutes);
 
 const PORT = process.env.PORT || 3000; 
 app.listen(PORT, () => console.log(`API Trello running on http://taskifydb.c1sgsamwsjxd.eu-north-1.rds.amazonaws.com:${PORT}`));
