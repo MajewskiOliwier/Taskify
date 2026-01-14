@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { TeamListItem } from './team-list-item/team-list-item';
+import { ProjectListItem } from './team-list-item/team-list-item';
 import { ActivatedRoute } from '@angular/router';
 import { AddProjectForm } from "./add-project-form/add-project-form";
 
 @Component({
   selector: 'app-home-page',
-  imports: [TeamListItem, AddProjectForm],
+  imports: [ProjectListItem, AddProjectForm],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
   standalone: true,
 })
 
 export class HomePage implements OnInit {
-  teams: any[] = [];
+  projects: any[] = [];
   isLoading = true;
   userID!: string;
   showAddProject = false;
@@ -34,11 +34,11 @@ export class HomePage implements OnInit {
     this.http.get<any[]>(url, { withCredentials: true }
     ).subscribe({
       next: (data) => {
-        this.teams = data;
+        this.projects = data;
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load teams', err);
+        console.error('Failed to load projects', err);
         this.isLoading = false;
       }
     });

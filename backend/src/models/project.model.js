@@ -4,11 +4,10 @@ const { randomUUID } = require('crypto');
 module.exports = {
     getParticipatingProjects: (userID, callback) =>{
         const getQuery = `
-        SELECT b.*
-            FROM USER u
-            INNER JOIN board_member member ON u.id_user = member.id_user
-            INNER JOIN BOARD b ON member.id_board = b.id_board
-            WHERE u.id_user = ?
+            SELECT p.*
+            FROM PROJECT p
+            INNER JOIN CONTAINS c ON p.id_project = c.id_project
+            WHERE c.id_user = ?
         `;
 
         db.query(getQuery, [userID], callback);
@@ -31,56 +30,69 @@ module.exports = {
                 VALUES (?, ?, ?, NOW())`,
                 [projectId, name, plan_type],
                 err => {
-                if (err) return conn.rollback(() => callback(err));
-
-                conn.query(
-                    `INSERT INTO BOARD (id_board, name, created_at, updated_at)
-                    VALUES (?, 'TODO', NOW(), NOW()),
-                            (?, 'IN PROGRESS', NOW(), NOW()),
-                            (?, 'DONE', NOW(), NOW())`,
-                    [todoId, inProgressId, doneId],
-                    err => {
                     if (err) return conn.rollback(() => callback(err));
 
+                    // ✅ ADD THIS BLOCK
                     conn.query(
-                        `INSERT INTO OWNS (id_project, id_board)
-                        VALUES (?, ?),
-                                (?, ?),
-                                (?, ?)`,
-                        [
-                        projectId, todoId,
-                        projectId, inProgressId,
-                        projectId, doneId
-                        ],
-                        err => {
+                    `INSERT INTO CONTAINS (id_user, id_project)
+                    VALUES (?, ?)`,
+                    [userID, projectId],
+                    err => {
                         if (err) return conn.rollback(() => callback(err));
 
+                        // ⬇️ continue with BOARD insert
                         conn.query(
-                            `INSERT INTO CREATES (id_user, id_board)
+                        `INSERT INTO BOARD (id_board, name, created_at, updated_at)
+                        VALUES (?, 'TODO', NOW(), NOW()),
+                                (?, 'IN PROGRESS', NOW(), NOW()),
+                                (?, 'DONE', NOW(), NOW())`,
+                        [todoId, inProgressId, doneId],
+                        err => {
+                            if (err) return conn.rollback(() => callback(err));
+
+                            // OWNS
+                            conn.query(
+                            `INSERT INTO OWNS (id_project, id_board)
                             VALUES (?, ?),
                                     (?, ?),
                                     (?, ?)`,
                             [
-                            userID, todoId,
-                            userID, inProgressId,
-                            userID, doneId
+                                projectId, todoId,
+                                projectId, inProgressId,
+                                projectId, doneId
                             ],
                             err => {
-                            if (err) return conn.rollback(() => callback(err));
-
-                            conn.commit(err => {
                                 if (err) return conn.rollback(() => callback(err));
-                                conn.release();
-                                callback(null, { projectId });
-                            });
+
+                                // CREATES
+                                conn.query(
+                                `INSERT INTO CREATES (id_user, id_board)
+                                VALUES (?, ?),
+                                        (?, ?),
+                                        (?, ?)`,
+                                [
+                                    userID, todoId,
+                                    userID, inProgressId,
+                                    userID, doneId
+                                ],
+                                err => {
+                                    if (err) return conn.rollback(() => callback(err));
+
+                                    conn.commit(err => {
+                                    if (err) return conn.rollback(() => callback(err));
+                                    conn.release();
+                                    callback(null, { projectId });
+                                    });
+                                }
+                                );
                             }
-                        );
+                            );
                         }
-                    );
+                        );
                     }
-                );
+                    );
                 }
-            );
+                );
             });
         });
     }

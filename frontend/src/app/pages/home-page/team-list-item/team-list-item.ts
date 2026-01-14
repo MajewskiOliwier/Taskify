@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './team-list-item.css',
   standalone: true
 })
-export class TeamListItem {
-  @Input() team!: {
-      id_board: string;
+export class ProjectListItem {
+  @Input() project!: {
+      id_project: string;
       name: string;
       plan_type?: string;
   }
@@ -18,6 +18,6 @@ export class TeamListItem {
   constructor(private router: Router) {}
 
   openTeam(): void {
-    this.router.navigate(['/project', this.team.id_board]);
+    this.router.navigate(['/project', this.project.id_project]);
   }
 }
