@@ -15,9 +15,15 @@ export class ProjectListItem {
       plan_type?: string;
   }
 
+  @Input() userID!: string;
+
   constructor(private router: Router) {}
 
   openTeam(): void {
-    this.router.navigate(['/project', this.project.id_project]);
+    this.router.navigate([
+      '/project',
+      this.userID,
+      this.project.id_project
+    ]);
   }
 }

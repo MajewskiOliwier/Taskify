@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TeamPage } from './pages/team-page/team-page';
+import { ProjectPage } from './pages/project-page/project-page';
 import { LoginPage } from './pages/login-page/login-page';
 import { TaskPage } from './pages/task-page/task-page';
 import { WelcomePage } from './pages/welcome-page/welcome-page';
@@ -30,8 +30,8 @@ export const routes: Routes = [
         component: SettingsPage
     },
     {
-        path: 'team/:teamId',
-        component: TeamPage
+        path: 'project/:userID/:projectID',
+        component: ProjectPage
     },
     {
         path: 'team/:teamID/task/:taskID',

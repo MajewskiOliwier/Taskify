@@ -1,0 +1,23 @@
+<div class="overlay" (click)="close.emit()"></div>
+
+<div class="modal">
+  <h2>Create new task</h2>
+
+  <input
+    type="text"
+    placeholder="Task title"
+    [(ngModel)]="title"
+  />
+
+  <textarea
+    placeholder="Description"
+    [(ngModel)]="description"
+  ></textarea>
+
+  <div class="actions">
+    <button (click)="close.emit()">Cancel</button>
+    <button (click)="submit()" [disabled]="loading">
+      {{ loading ? 'Creating...' : 'Create' }}
+    </button>
+  </div>
+</div>

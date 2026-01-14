@@ -9,6 +9,14 @@ module.exports = {
             res.json(results);
         });
     },
+    getProjectColumns: (req, res) => {
+        Project.getProjectColumns(req.params.projectID, (err, results) => {
+            if (err) 
+                return res.status(500).json(err);
+            
+            res.json(results);
+        });
+    },
 
     createDefaultProject: (req, res) => {
         const { name, plan_type } = req.body;

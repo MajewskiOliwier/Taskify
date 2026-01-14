@@ -1,0 +1,76 @@
+<div class="project-container">
+
+  <header class="project-header">
+    <h1>Project Board</h1>
+    <app-logout-button></app-logout-button>
+  </header>
+
+  @if (showAddTask) {
+    <app-add-task-form
+      [projectID]="projectID"
+      (close)="showAddTask = false"
+      (created)="onTaskCreated()">
+    </app-add-task-form>
+  } @else {
+    <button (click)="showAddTask = true">Add task</button>
+  }
+
+  @if (isLoading) {
+
+    <div class="loading">
+      Loading tasks...
+    </div>
+
+  } @else if (Object.keys(columns).length === 0) {
+
+    <div class="empty-state">
+      <p>No tasks in this project yet.</p>
+      <p>Create your first task to get started.</p>
+    </div>
+
+  } @else {
+
+    <div class="board">
+
+      @for (column of Object.keys(columns); track column) {
+
+        <div class="column">
+
+          <h3 class="column-title">
+            {{ column }}
+          </h3>
+
+          @if (columns[column].length === 0) {
+
+            <div class="column-empty">
+              No tasks
+            </div>
+
+          } @else {
+
+            <div class="task-list">
+              @for (task of columns[column]; track task.id_task) {
+
+                <div class="task-card">
+                  <h4 class="task-title">
+                    {{ task.task_title }}
+                  </h4>
+
+                  @if (task.description) {
+                    <p class="task-description">
+                      {{ task.description }}
+                    </p>
+                  }
+                </div>
+
+              }
+            </div>
+
+          }
+
+        </div>
+
+      }
+    </div>
+  }
+</div>

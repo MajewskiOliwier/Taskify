@@ -47,7 +47,7 @@ module.exports = {
 
             res.cookie('token', token, cookieOptions);
             res.status(200).json({ 
-                userId: user.userId,
+                userId: user.id_user,
                 message: 'Connexion réussie.' + user.userId 
             });
         });

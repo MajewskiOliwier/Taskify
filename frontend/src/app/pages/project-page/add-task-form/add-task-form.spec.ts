@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeamPage } from './team-page';
+import { AddTaskForm } from './add-task-form';
 
-describe('TeamPage', () => {
-  let component: TeamPage;
-  let fixture: ComponentFixture<TeamPage>;
+describe('AddTaskForm', () => {
+  let component: AddTaskForm;
+  let fixture: ComponentFixture<AddTaskForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TeamPage]
+      imports: [AddTaskForm]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TeamPage);
+    fixture = TestBed.createComponent(AddTaskForm);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

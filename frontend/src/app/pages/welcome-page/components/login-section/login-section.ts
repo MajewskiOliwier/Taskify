@@ -28,7 +28,7 @@ export class LoginSection {
           console.log('Login ok with id:'+ res.userId, res);
           
           setTimeout(() => {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home/'+res.userId]);
           }, 2000);
         },
         error: err => console.error('Login error', err)

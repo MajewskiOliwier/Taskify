@@ -10,7 +10,8 @@
 
     <div class="team-list">
         @for (project of projects; track project.id_project) {
-            <app-team-list-item [project]="project"></app-team-list-item>
+            <app-team-list-item [project]="project" 
+        [userID]="userID"></app-team-list-item>
         }
     </div>
 
