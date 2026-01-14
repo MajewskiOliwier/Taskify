@@ -6,6 +6,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const boardsRoutes = require("./src/routes/boards.routes");
+const projectRoutes = require("./src/routes/project.routes");
+
 const listsRoutes = require("./src/routes/lists.routes");
 const cardsRoutes = require("./src/routes/cards.routes");
 
@@ -27,11 +29,11 @@ app.use(cookieParser());
 
 // Routes
 app.use("/boards", boardsRoutes);
+app.use("/project", projectRoutes);
 app.use("/lists", listsRoutes);
 app.use("/cards", cardsRoutes);
 app.use('/task', tasksRoutes);
 
-// Carlos app use
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000; 

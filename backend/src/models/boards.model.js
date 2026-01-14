@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const { randomUUID } = require('crypto');
 
 module.exports = {
     getAll: (callback) => {
@@ -19,5 +20,30 @@ module.exports = {
         `;
 
         db.query(getQuery, [userID], callback);
+    },
+
+    createNewBoard: (name, userID, callback) => {
+        const boardId = randomUUID();
+
+        const query = `
+            START TRANSACTION;
+
+            INSERT INTO BOARD (id_board, name, created_at, updated_at)
+            VALUES (?, ?, NOW(), NOW());
+
+            INSERT INTO CREATES (id_user, id_board)
+            VALUES ()
+
+            INSERT INTO board_member (id_user, id_board, role)
+            VALUES (?, ?, 'OWNER');
+
+            COMMIT;
+        `;
+
+        db.query(
+            query,
+            [boardId, name, userID, boardId],
+            callback
+        );
     }
 };

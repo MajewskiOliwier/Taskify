@@ -3,18 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { TeamListItem } from './team-list-item/team-list-item';
 import { ActivatedRoute } from '@angular/router';
+import { AddProjectForm } from "./add-project-form/add-project-form";
 
 @Component({
   selector: 'app-home-page',
-  imports: [TeamListItem],
+  imports: [TeamListItem, AddProjectForm],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
   standalone: true,
 })
+
 export class HomePage implements OnInit {
   teams: any[] = [];
   isLoading = true;
   userID!: string;
+  showAddProject = false;
 
   constructor(
     private http: HttpClient, 
@@ -26,7 +29,7 @@ export class HomePage implements OnInit {
   }
 
   loadTeams(): void {
-    const url = `http://localhost:3000/boards/${this.userID}`;
+    const url = `http://localhost:3000/project/${this.userID}`;
     
     this.http.get<any[]>(url, { withCredentials: true }
     ).subscribe({
@@ -39,5 +42,18 @@ export class HomePage implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  openAddProject(): void {
+    this.showAddProject = true;
+  }
+
+  closeAddProject(): void {
+    this.showAddProject = false;
+  }
+
+  onProjectCreated(): void {
+    this.showAddProject = false;
+    this.loadTeams(); 
   }
 }

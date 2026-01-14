@@ -22,4 +22,12 @@ module.exports = {
             res.json(results);
         });
     },
+
+    createNewBoard: (req, res) => {
+        const { name } = req.body;
+        Board.createNewBoard(name, (err, result) => {
+            if (err) return res.status(500).json(err);
+            res.json({ id: result.insertId, name });
+        });
+    },
 };

@@ -17,4 +17,14 @@
     <p>You are not a member of any team yet.</p>
   }
 
+  @if (showAddProject) {
+    <app-add-project-form
+        [userID]="userID"
+        (close)="closeAddProject()"
+        (created)="onProjectCreated()">
+    </app-add-project-form>
+  } @else {
+    <button (click)="openAddProject()">AddProject</button>
+  }
+
 </div>

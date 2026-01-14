@@ -12,12 +12,12 @@ export class TeamListItem {
   @Input() team!: {
       id_board: string;
       name: string;
-      description?: string;
+      plan_type?: string;
   }
 
   constructor(private router: Router) {}
 
   openTeam(): void {
-    this.router.navigate(['/boards', this.team.id_board]);
+    this.router.navigate(['/project', this.team.id_board]);
   }
 }
