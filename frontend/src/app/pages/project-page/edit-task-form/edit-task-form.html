@@ -1,0 +1,23 @@
+<div class="overlay" (click)="close.emit()"></div>
+
+<div class="modal">
+  <h2>Edit task</h2>
+
+  <input
+    type="text"
+    [(ngModel)]="title"
+    placeholder="Task title"
+  />
+
+  <textarea
+    [(ngModel)]="description"
+    placeholder="Task description">
+  </textarea>
+
+  <div class="actions">
+    <button (click)="close.emit()">Cancel</button>
+    <button (click)="submit()" [disabled]="loading">
+      {{ loading ? 'Saving...' : 'Save' }}
+    </button>
+  </div>
+</div>

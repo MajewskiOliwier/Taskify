@@ -191,4 +191,17 @@ module.exports = {
             callback
         );
     },
+
+    updateTask: (taskID, title, description, callback) => {
+        db.query(
+            `
+            UPDATE TASK
+            SET title = ?, description = ?, updated_at = NOW()
+            WHERE id_task = ?
+            `,
+            [title, description, taskID],
+            callback
+        );
+    }
+
 };

@@ -15,6 +15,14 @@
     <button (click)="showAddTask = true">Add task</button>
   }
 
+  @if (showEditTask && selectedTask) {
+    <app-edit-task-form 
+      [task]="selectedTask"
+      (close)="closeEditTask()"
+      (updated)="onTaskUpdated()">
+    </app-edit-task-form>
+  }
+
   @if (isLoading) {
 
     <div class="loading">
@@ -52,9 +60,14 @@
               @for (task of columns[column]; track task.id_task) {
 
                 <div class="task-card">
-                  <h4 class="task-title">
-                    {{ task.task_title }}
-                  </h4>
+                  <h4 class="task-title">{{ task.task_title }}</h4>
+
+                   <button
+                    class="edit-btn"
+                    (click)="openEditTask(task); $event.stopPropagation()"
+                    title="Edit task">
+                    ✏️
+                  </button>
 
                   @if (task.description) {
                     <p class="task-description">

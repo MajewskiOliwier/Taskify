@@ -124,5 +124,15 @@ module.exports = {
                 );
             });
         });
+    },
+
+    updateTask: (req, res) => {
+        const { title, description } = req.body;
+        const { taskID } = req.params;
+
+        Task.updateTask(taskID, title, description, err => {
+            if (err) return res.status(500).json(err);
+            res.json({ success: true });
+        });
     }
 };

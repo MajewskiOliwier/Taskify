@@ -4,16 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LogoutButton } from "../../shared/components/logout-button/logout-button";
 import { AddTaskForm } from "./add-task-form/add-task-form";
+import { EditTaskForm } from "./edit-task-form/edit-task-form";
 
 @Component({
   selector: 'app-team-page',
-  imports: [CommonModule, LogoutButton, AddTaskForm],
+  imports: [CommonModule, LogoutButton, AddTaskForm, EditTaskForm],
   templateUrl: './project-page.html',
   styleUrl: './project-page.css',
 })
 export class ProjectPage implements OnInit {
   isLoading = true;
   showAddTask = false;
+  showEditTask = false;
+  selectedTask: any | null = null;
+
 
   Object = Object;
   projectID!: string;
@@ -67,6 +71,21 @@ export class ProjectPage implements OnInit {
 
   onTaskCreated(): void {
     this.showAddTask = false;
+    this.loadColumnsAndTasks();
+  }
+
+  openEditTask(task: any): void {
+    this.selectedTask = task;
+    this.showEditTask = true;
+  }
+
+  closeEditTask(): void {
+    this.selectedTask = null;
+    this.showEditTask = false;
+  }
+ 
+  onTaskUpdated(): void {
+    this.closeEditTask();
     this.loadColumnsAndTasks();
   }
 }
