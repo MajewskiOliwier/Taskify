@@ -1,17 +1,9 @@
-/* =====================
-   PAGE CONTAINER
-===================== */
-
 .home-container {
   padding: 24px;
   background: #f4f5f7;
   min-height: 100vh;
   box-sizing: border-box;
 }
-
-/* =====================
-   HEADER
-===================== */
 
 .home-container h1 {
   margin: 0 0 16px 0;
@@ -20,21 +12,12 @@
   color: #172b4d;
 }
 
-/* =====================
-   PROJECT LIST
-===================== */
-
 .team-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
-
-/* =====================
-   PROJECT ITEM (wrapper)
-   styles apply to app-team-list-item
-===================== */
 
 app-team-list-item {
   display: block;
@@ -51,19 +34,11 @@ app-team-list-item:hover {
   transform: translateY(-1px);
 }
 
-/* =====================
-   EMPTY / LOADING STATES
-===================== */
-
 .home-container p,
 .home-container div {
   font-size: 14px;
   color: #6b778c;
 }
-
-/* =====================
-   ADD PROJECT BUTTON
-===================== */
 
 .home-container button {
   background: #0052cc;

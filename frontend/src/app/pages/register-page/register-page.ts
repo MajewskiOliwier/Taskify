@@ -57,7 +57,7 @@ export class RegisterPage implements OnInit {
         this.isLoading = false;
         this.successMessage = 'Registration successful! Redirecting to login...';
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/welcome']);
         }, 2000);
       },
       error: (error) => {

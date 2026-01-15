@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 import { ProjectListItem } from './team-list-item/team-list-item';
 import { ActivatedRoute } from '@angular/router';
 import { AddProjectForm } from "./add-project-form/add-project-form";
-import { LogoutButton } from "../../shared/components/logout-button/logout-button";
 
 @Component({
   selector: 'app-home-page',
-  imports: [ProjectListItem, AddProjectForm, LogoutButton],
+  imports: [ProjectListItem, AddProjectForm],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
   standalone: true,

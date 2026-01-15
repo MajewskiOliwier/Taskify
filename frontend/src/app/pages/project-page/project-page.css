@@ -41,6 +41,7 @@ button:disabled {
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 12px;
+  height: 20em;
 }
 
 .column {
