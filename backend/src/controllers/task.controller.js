@@ -134,5 +134,28 @@ module.exports = {
             if (err) return res.status(500).json(err);
             res.json({ success: true });
         });
+    },
+
+    deleteTask: (req,res) => {
+        const {taskID} = req.params;
+
+        Task.deleteTask(taskID, err => {
+            if (err) return res.status(500).json(err);
+            res.json({ success: true });
+        });
+    },
+
+    moveTask: (req, res) => {
+        const { taskID, projectID } = req.params;
+        const { targetColumnID } = req.body;
+
+        if (!taskID || !projectID || !targetColumnID) {
+            return res.status(400).json({ message: "Missing data" });
+        }
+
+        Task.moveTaskToColumn(taskID, projectID, targetColumnID, err => {
+            if (err) return res.status(500).json(err);
+            res.json({ success: true });
+        });
     }
 };

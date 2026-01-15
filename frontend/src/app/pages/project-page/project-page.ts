@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { LogoutButton } from "../../shared/components/logout-button/logout-button";
 import { AddTaskForm } from "./add-task-form/add-task-form";
 import { EditTaskForm } from "./edit-task-form/edit-task-form";
+import { DeleteTaskConfirmation } from "./delete-task-confirmation/delete-task-confirmation";
 
 @Component({
   selector: 'app-team-page',
-  imports: [CommonModule, LogoutButton, AddTaskForm, EditTaskForm],
+  imports: [CommonModule, LogoutButton, AddTaskForm, EditTaskForm, DeleteTaskConfirmation],
   templateUrl: './project-page.html',
   styleUrl: './project-page.css',
 })
@@ -16,15 +17,16 @@ export class ProjectPage implements OnInit {
   isLoading = true;
   showAddTask = false;
   showEditTask = false;
+  showTaskDeleteConfirmation = false;
   selectedTask: any | null = null;
-
+  taskToDelete: any | null = null;  
 
   Object = Object;
   projectID!: string;
   userID!: string;
 
   columns: Record<string, any[]> = {};
-  columnOrder: string[] = [];
+  columnOrder: { id: string; title: string , description: string}[] = [];
 
   constructor(
     private http: HttpClient,
@@ -49,8 +51,12 @@ export class ProjectPage implements OnInit {
       this.columnOrder = [];
 
       for (const col of columns) {
-        this.columns[col.title] = [];
-        this.columnOrder.push(col.title);
+        this.columns[col.id_COLONNE] = [];
+        this.columnOrder.push({
+          id: col.id_COLONNE,
+          title: col.title,
+          description: col.description
+        });
       }
 
       this.http.get<any[]>(
@@ -59,13 +65,23 @@ export class ProjectPage implements OnInit {
       ).subscribe(tasks => {
 
         for (const task of tasks) {
-          if (this.columns[task.column_name]) {
-            this.columns[task.column_name].push(task);
+          if (this.columns[task.id_COLONNE]) {
+            this.columns[task.id_COLONNE]?.push(task);
           }
         }
 
         this.isLoading = false;
       });
+    });
+  }
+
+  moveTask(task: any, targetColumnID: string): void {
+    this.http.put(
+      `http://localhost:3000/task/${task.id_task}/project/${this.projectID}/move`,
+      { targetColumnID },
+      { withCredentials: true }
+    ).subscribe(() => {
+      this.loadColumnsAndTasks();
     });
   }
 
@@ -86,6 +102,21 @@ export class ProjectPage implements OnInit {
  
   onTaskUpdated(): void {
     this.closeEditTask();
+    this.loadColumnsAndTasks();
+  }
+
+  openDeleteTask(task: any): void {
+    this.taskToDelete = task;
+    this.showTaskDeleteConfirmation = true;
+  }
+
+  closeDeleteTask(): void {
+    this.taskToDelete = null;
+    this.showTaskDeleteConfirmation = false;
+  }
+
+  onTaskDeleted(): void {
+    this.closeDeleteTask();
     this.loadColumnsAndTasks();
   }
 }

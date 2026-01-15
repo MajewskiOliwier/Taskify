@@ -1,0 +1,21 @@
+<div class="overlay" (click)="close.emit()"></div>
+
+<div class="modal">
+  <h2>Delete task</h2>
+
+  <p>
+    Are you sure you want to delete:
+    <strong>{{ taskTitle }}</strong> ?
+  </p>
+
+  <div class="actions">
+    <button class="cancel" (click)="close.emit()">Cancel</button>
+
+    <button
+      class="delete"
+      (click)="confirmDelete()"
+      [disabled]="loading">
+      {{ loading ? 'Deleting…' : 'Delete' }}
+    </button>
+  </div>
+</div>

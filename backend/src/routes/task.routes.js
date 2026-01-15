@@ -8,7 +8,9 @@ router.get("/project/:projectID", controller.getProjectTasks); // all tasks to f
 
 router.post("/project/:projectID", controller.createTask);
 router.post("/", controller.createTask);
+router.put('/:taskID/project/:projectID/move', controller.moveTask);
 router.put("/:taskID", controller.updateTask);
+router.delete("/:taskID", controller.deleteTask);
 
 
 module.exports = router;

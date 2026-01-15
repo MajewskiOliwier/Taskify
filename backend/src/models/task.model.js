@@ -202,6 +202,59 @@ module.exports = {
             [title, description, taskID],
             callback
         );
-    }
+    },
 
+    deleteTask: (taskID, callback) => {
+        db.getConnection((err, conn) => {
+            if (err) return callback(err);
+
+            conn.beginTransaction(err => {
+            if (err) return callback(err);
+
+            conn.query(
+                `DELETE FROM CONTAINS_TASK WHERE id_task = ?`,
+                [taskID],
+                err => {
+                if (err) return conn.rollback(() => callback(err));
+
+                conn.query(
+                    `DELETE FROM ASSIGNED_TO WHERE id_task = ?`,
+                    [taskID],
+                    err => {
+                    if (err) return conn.rollback(() => callback(err));
+
+                    conn.query(
+                        `DELETE FROM TASK WHERE id_task = ?`,
+                        [taskID],
+                        err => {
+                        if (err) return conn.rollback(() => callback(err));
+
+                        conn.commit(err => {
+                            if (err) return conn.rollback(() => callback(err));
+                            conn.release();
+                            callback(null);
+                        });
+                        }
+                    );
+                    }
+                );
+                }
+            );
+            });
+        });
+    },
+
+    moveTaskToColumn: (taskID, projectID, targetColumnID, callback) => {
+        const query = `
+           UPDATE CONTAINS_TASK
+            SET id_COLONNE = ?
+            WHERE id_task = ?
+        `;
+
+        db.query(
+            query,
+            [targetColumnID, taskID, projectID],
+            callback
+        );
+    }
 };

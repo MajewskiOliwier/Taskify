@@ -23,66 +23,82 @@
     </app-edit-task-form>
   }
 
+  @if (showTaskDeleteConfirmation && taskToDelete) {
+    <app-delete-task-confirmation
+      [taskId]="taskToDelete.id_task"
+      [taskTitle]="taskToDelete.title"
+      (close)="closeDeleteTask()"
+      (deleted)="onTaskDeleted()">
+    </app-delete-task-confirmation>
+  }
+
   @if (isLoading) {
 
-    <div class="loading">
-      Loading tasks...
-    </div>
-
-  } @else if (Object.keys(columns).length === 0) {
-
-    <div class="empty-state">
-      <p>No tasks in this project yet.</p>
-      <p>Create your first task to get started.</p>
-    </div>
+    <div class="loading">Loading tasks...</div>
 
   } @else {
 
     <div class="board">
 
-      @for (column of Object.keys(columns); track column) {
+      @for (col of columnOrder; track col.id) {
 
         <div class="column">
 
-          <h3 class="column-title">
-            {{ column }}
-          </h3>
+          <h3 class="column-title">{{ col.title }}</h3>
 
-          @if (columns[column].length === 0) {
+          @if (columns[col.id].length === 0) {
 
-            <div class="column-empty">
-              No tasks
-            </div>
+            <div class="column-empty">No tasks</div>
 
           } @else {
 
             <div class="task-list">
-              @for (task of columns[column]; track task.id_task) {
+
+              @for (task of columns[col.id]; track task.id_task) {
 
                 <div class="task-card">
+
                   <h4 class="task-title">{{ task.task_title }}</h4>
 
-                   <button
+                  <!-- MOVE BUTTON -->
+                  <button
+                    class="move-btn"
+                    (click)="task.showMoveMenu = !task.showMoveMenu; $event.stopPropagation()">
+                    ⇄
+                  </button>
+
+                  @if (task.showMoveMenu) {
+                    <div class="move-menu">
+                      @for (target of columnOrder; track target.id) {
+                        <button
+                          (click)="moveTask(task, target.id); task.showMoveMenu = false">
+                          {{ target.title }}
+                        </button>
+                      }
+                    </div>
+                  }
+
+                  <button
                     class="edit-btn"
-                    (click)="openEditTask(task); $event.stopPropagation()"
-                    title="Edit task">
+                    (click)="openEditTask(task); $event.stopPropagation()">
                     ✏️
                   </button>
 
-                  @if (task.description) {
-                    <p class="task-description">
-                      {{ task.description }}
-                    </p>
-                  }
-                </div>
+                  <button
+                    class="delete-btn"
+                    (click)="openDeleteTask(task); $event.stopPropagation()">
+                    🗑️
+                  </button>
 
+                  @if (task.description) {
+                    <p class="task-description">{{ task.description }}</p>
+                  }
+
+                </div>
               }
             </div>
-
           }
-
         </div>
-
       }
     </div>
   }
