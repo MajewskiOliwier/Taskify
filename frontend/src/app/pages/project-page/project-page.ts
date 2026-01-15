@@ -12,6 +12,7 @@ import { DeleteTaskConfirmation } from "./delete-task-confirmation/delete-task-c
   templateUrl: './project-page.html',
   styleUrl: './project-page.css',
 })
+
 export class ProjectPage implements OnInit {
   isLoading = true;
   showAddTask = false;

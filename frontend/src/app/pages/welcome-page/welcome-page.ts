@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-// Current changes:
-// import { Welcome } from '../../welcome/welcome';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
-// @Component({
-//   selector: 'app-welcome-page',
-//   imports: [Welcome],
 
 import { Forgotpassword } from '../../shared/components/forgotpassword/forgotpassword';
 import { LoginSection } from "./components/login-section/login-section";
