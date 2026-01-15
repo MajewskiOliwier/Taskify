@@ -1,10 +1,4 @@
 <div class="project-container">
-
-  <header class="project-header">
-    <h1>Project Board</h1>
-    <app-logout-button></app-logout-button>
-  </header>
-
   @if (showAddTask) {
     <app-add-task-form
       [projectID]="projectID"
@@ -12,7 +6,7 @@
       (created)="onTaskCreated()">
     </app-add-task-form>
   } @else {
-    <button (click)="showAddTask = true">Add task</button>
+    <button class="add-task-btn" (click)="showAddTask = true">Add task</button>
   }
 
   @if (showEditTask && selectedTask) {
@@ -60,7 +54,6 @@
 
                   <h4 class="task-title">{{ task.task_title }}</h4>
 
-                  <!-- MOVE BUTTON -->
                   <button
                     class="move-btn"
                     (click)="task.showMoveMenu = !task.showMoveMenu; $event.stopPropagation()">

@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 
 import { RouterOutlet } from '@angular/router';
+import { Header } from "./shared/layout/header/header";
+import { Footer } from "./shared/layout/footer/footer";
 
 // import { WelcomePage } from './pages/welcome-page/welcome-page';
 
@@ -8,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

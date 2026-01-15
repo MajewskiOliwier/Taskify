@@ -1,0 +1,15 @@
+#app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+#app-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}

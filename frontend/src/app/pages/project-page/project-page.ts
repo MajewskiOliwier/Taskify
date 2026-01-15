@@ -2,14 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { LogoutButton } from "../../shared/components/logout-button/logout-button";
 import { AddTaskForm } from "./add-task-form/add-task-form";
 import { EditTaskForm } from "./edit-task-form/edit-task-form";
 import { DeleteTaskConfirmation } from "./delete-task-confirmation/delete-task-confirmation";
 
 @Component({
   selector: 'app-team-page',
-  imports: [CommonModule, LogoutButton, AddTaskForm, EditTaskForm, DeleteTaskConfirmation],
+  imports: [CommonModule, AddTaskForm, EditTaskForm, DeleteTaskConfirmation],
   templateUrl: './project-page.html',
   styleUrl: './project-page.css',
 })
