@@ -1,0 +1,131 @@
+
+```
+Taskify
+├─ backend
+│  ├─ server.js
+│  └─ src
+│     ├─ .env
+│     ├─ config
+│     │  └─ db.js
+│     ├─ controllers
+│     │  ├─ boards.controller.js
+│     │  ├─ cards.controller.js
+│     │  ├─ lists.controller.js
+│     │  └─ login.controllers.js
+│     ├─ Dockerfile
+│     ├─ models
+│     │  ├─ boards.model.js
+│     │  ├─ cards.model.js
+│     │  ├─ lists.model.js
+│     │  └─ login.model.js
+│     └─ routes
+│        ├─ boards.routes.js
+│        ├─ cards.routes.js
+│        ├─ lists.routes.js
+│        └─ login.routes.js
+├─ frontend
+│  ├─ .editorconfig
+│  ├─ angular.json
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ public
+│  │  └─ favicon.ico
+│  ├─ README.md
+│  ├─ src
+│  │  ├─ app
+│  │  │  ├─ app.config.ts
+│  │  │  ├─ app.css
+│  │  │  ├─ app.html
+│  │  │  ├─ app.routes.ts
+│  │  │  ├─ app.spec.ts
+│  │  │  ├─ app.ts
+│  │  │  ├─ forgotpassword
+│  │  │  │  ├─ forgotpassword.css
+│  │  │  │  ├─ forgotpassword.html
+│  │  │  │  ├─ forgotpassword.spec.ts
+│  │  │  │  └─ forgotpassword.ts
+│  │  │  ├─ login
+│  │  │  │  ├─ login.css
+│  │  │  │  ├─ login.html
+│  │  │  │  ├─ login.spec.ts
+│  │  │  │  └─ login.ts
+│  │  │  ├─ pages
+│  │  │  │  ├─ home
+│  │  │  │  │  ├─ home.css
+│  │  │  │  │  ├─ home.html
+│  │  │  │  │  ├─ home.spec.ts
+│  │  │  │  │  └─ home.ts
+│  │  │  │  ├─ login-page
+│  │  │  │  │  ├─ login-page.css
+│  │  │  │  │  ├─ login-page.html
+│  │  │  │  │  ├─ login-page.spec.ts
+│  │  │  │  │  └─ login-page.ts
+│  │  │  │  ├─ profile
+│  │  │  │  │  ├─ profile.css
+│  │  │  │  │  ├─ profile.html
+│  │  │  │  │  ├─ profile.spec.ts
+│  │  │  │  │  └─ profile.ts
+│  │  │  │  ├─ register-page
+│  │  │  │  │  ├─ register-page.css
+│  │  │  │  │  ├─ register-page.html
+│  │  │  │  │  ├─ register-page.spec.ts
+│  │  │  │  │  └─ register-page.ts
+│  │  │  │  ├─ settings
+│  │  │  │  │  ├─ settings.css
+│  │  │  │  │  ├─ settings.html
+│  │  │  │  │  ├─ settings.spec.ts
+│  │  │  │  │  └─ settings.ts
+│  │  │  │  ├─ task-page
+│  │  │  │  │  ├─ task-page.css
+│  │  │  │  │  ├─ task-page.html
+│  │  │  │  │  ├─ task-page.spec.ts
+│  │  │  │  │  └─ task-page.ts
+│  │  │  │  ├─ team-page
+│  │  │  │  │  ├─ team-page.css
+│  │  │  │  │  ├─ team-page.html
+│  │  │  │  │  ├─ team-page.spec.ts
+│  │  │  │  │  └─ team-page.ts
+│  │  │  │  └─ welcome-page
+│  │  │  │     ├─ welcome-page.css
+│  │  │  │     ├─ welcome-page.html
+│  │  │  │     ├─ welcome-page.spec.ts
+│  │  │  │     └─ welcome-page.ts
+│  │  │  ├─ register
+│  │  │  │  ├─ register.css
+│  │  │  │  ├─ register.html
+│  │  │  │  ├─ register.spec.ts
+│  │  │  │  └─ register.ts
+│  │  │  ├─ services
+│  │  │  ├─ shared
+│  │  │  │  ├─ components
+│  │  │  │  │  └─ login-button
+│  │  │  │  │     ├─ login-button.css
+│  │  │  │  │     ├─ login-button.html
+│  │  │  │  │     ├─ login-button.spec.ts
+│  │  │  │  │     └─ login-button.ts
+│  │  │  │  └─ layout
+│  │  │  │     ├─ footer
+│  │  │  │     │  ├─ footer.css
+│  │  │  │     │  ├─ footer.html
+│  │  │  │     │  ├─ footer.spec.ts
+│  │  │  │     │  └─ footer.ts
+│  │  │  │     └─ header
+│  │  │  │        ├─ header.css
+│  │  │  │        ├─ header.html
+│  │  │  │        ├─ header.spec.ts
+│  │  │  │        └─ header.ts
+│  │  │  └─ welcome
+│  │  │     ├─ welcome.css
+│  │  │     ├─ welcome.html
+│  │  │     ├─ welcome.spec.ts
+│  │  │     └─ welcome.ts
+│  │  ├─ index.html
+│  │  ├─ main.ts
+│  │  └─ styles.css
+│  ├─ tsconfig.app.json
+│  ├─ tsconfig.json
+│  └─ tsconfig.spec.json
+├─ package-lock.json
+└─ package.json
+
+```
