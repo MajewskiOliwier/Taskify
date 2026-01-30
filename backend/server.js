@@ -37,4 +37,5 @@ app.use('/task', tasksRoutes);
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000; 
-app.listen(PORT, () => console.log(`API Trello running on http://taskifydb.c1sgsamwsjxd.eu-north-1.rds.amazonaws.com:${PORT}`));
+app.listen(PORT,'0.0.0.0', () => {console.log(`API Trello running on http://taskifydb.c1sgsamwsjxd.eu-north-1.rds.amazonaws.com:${PORT}`);
+                                 });
