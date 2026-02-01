@@ -2,6 +2,10 @@
 ```
 Taskify
 ├─ backend
+│  ├─ .dockerignore
+│  ├─ Dockerfile
+│  ├─ package-lock.json
+│  ├─ package.json
 │  ├─ server.js
 │  └─ src
 │     ├─ .env
@@ -11,21 +15,28 @@ Taskify
 │     │  ├─ boards.controller.js
 │     │  ├─ cards.controller.js
 │     │  ├─ lists.controller.js
-│     │  └─ login.controllers.js
-│     ├─ Dockerfile
+│     │  ├─ login.controllers.js
+│     │  ├─ project.controller.js
+│     │  └─ task.controller.js
 │     ├─ models
 │     │  ├─ boards.model.js
 │     │  ├─ cards.model.js
 │     │  ├─ lists.model.js
-│     │  └─ login.model.js
+│     │  ├─ login.model.js
+│     │  ├─ project.model.js
+│     │  └─ task.model.js
 │     └─ routes
 │        ├─ boards.routes.js
 │        ├─ cards.routes.js
 │        ├─ lists.routes.js
-│        └─ login.routes.js
+│        ├─ login.routes.js
+│        ├─ project.routes.js
+│        └─ task.routes.js
 ├─ frontend
+│  ├─ .dockerignore
 │  ├─ .editorconfig
 │  ├─ angular.json
+│  ├─ Dockerfile
 │  ├─ package-lock.json
 │  ├─ package.json
 │  ├─ public
@@ -39,86 +50,144 @@ Taskify
 │  │  │  ├─ app.routes.ts
 │  │  │  ├─ app.spec.ts
 │  │  │  ├─ app.ts
-│  │  │  ├─ forgotpassword
-│  │  │  │  ├─ forgotpassword.css
-│  │  │  │  ├─ forgotpassword.html
-│  │  │  │  ├─ forgotpassword.spec.ts
-│  │  │  │  └─ forgotpassword.ts
 │  │  │  ├─ login
-│  │  │  │  ├─ login.css
 │  │  │  │  ├─ login.html
-│  │  │  │  ├─ login.spec.ts
 │  │  │  │  └─ login.ts
 │  │  │  ├─ pages
-│  │  │  │  ├─ home
-│  │  │  │  │  ├─ home.css
-│  │  │  │  │  ├─ home.html
-│  │  │  │  │  ├─ home.spec.ts
-│  │  │  │  │  └─ home.ts
+│  │  │  │  ├─ home-page
+│  │  │  │  │  ├─ add-project-form
+│  │  │  │  │  │  ├─ add-project-form.css
+│  │  │  │  │  │  ├─ add-project-form.html
+│  │  │  │  │  │  ├─ add-project-form.spec.ts
+│  │  │  │  │  │  └─ add-project-form.ts
+│  │  │  │  │  ├─ home-page.css
+│  │  │  │  │  ├─ home-page.html
+│  │  │  │  │  ├─ home-page.spec.ts
+│  │  │  │  │  ├─ home-page.ts
+│  │  │  │  │  └─ team-list-item
+│  │  │  │  │     ├─ team-list-item.css
+│  │  │  │  │     ├─ team-list-item.html
+│  │  │  │  │     ├─ team-list-item.spec.ts
+│  │  │  │  │     └─ team-list-item.ts
 │  │  │  │  ├─ login-page
 │  │  │  │  │  ├─ login-page.css
 │  │  │  │  │  ├─ login-page.html
 │  │  │  │  │  ├─ login-page.spec.ts
 │  │  │  │  │  └─ login-page.ts
+│  │  │  │  ├─ not-found-page
+│  │  │  │  │  ├─ not-found-page.css
+│  │  │  │  │  ├─ not-found-page.html
+│  │  │  │  │  ├─ not-found-page.spec.ts
+│  │  │  │  │  └─ not-found-page.ts
 │  │  │  │  ├─ profile
 │  │  │  │  │  ├─ profile.css
 │  │  │  │  │  ├─ profile.html
 │  │  │  │  │  ├─ profile.spec.ts
 │  │  │  │  │  └─ profile.ts
+│  │  │  │  ├─ project-page
+│  │  │  │  │  ├─ add-task-form
+│  │  │  │  │  │  ├─ add-task-form.css
+│  │  │  │  │  │  ├─ add-task-form.html
+│  │  │  │  │  │  ├─ add-task-form.spec.ts
+│  │  │  │  │  │  └─ add-task-form.ts
+│  │  │  │  │  ├─ delete-task-confirmation
+│  │  │  │  │  │  ├─ delete-task-confirmation.css
+│  │  │  │  │  │  ├─ delete-task-confirmation.html
+│  │  │  │  │  │  ├─ delete-task-confirmation.spec.ts
+│  │  │  │  │  │  └─ delete-task-confirmation.ts
+│  │  │  │  │  ├─ edit-task-form
+│  │  │  │  │  │  ├─ edit-task-form.css
+│  │  │  │  │  │  ├─ edit-task-form.html
+│  │  │  │  │  │  ├─ edit-task-form.spec.ts
+│  │  │  │  │  │  └─ edit-task-form.ts
+│  │  │  │  │  ├─ project-page.css
+│  │  │  │  │  ├─ project-page.html
+│  │  │  │  │  ├─ project-page.spec.ts
+│  │  │  │  │  └─ project-page.ts
 │  │  │  │  ├─ register-page
 │  │  │  │  │  ├─ register-page.css
 │  │  │  │  │  ├─ register-page.html
 │  │  │  │  │  ├─ register-page.spec.ts
 │  │  │  │  │  └─ register-page.ts
-│  │  │  │  ├─ settings
-│  │  │  │  │  ├─ settings.css
-│  │  │  │  │  ├─ settings.html
-│  │  │  │  │  ├─ settings.spec.ts
-│  │  │  │  │  └─ settings.ts
+│  │  │  │  ├─ settings-page
+│  │  │  │  │  ├─ settings-page.css
+│  │  │  │  │  ├─ settings-page.html
+│  │  │  │  │  ├─ settings-page.spec.ts
+│  │  │  │  │  └─ settings-page.ts
 │  │  │  │  ├─ task-page
+│  │  │  │  │  ├─ components
+│  │  │  │  │  │  ├─ sort-button
+│  │  │  │  │  │  │  ├─ sort-button.css
+│  │  │  │  │  │  │  ├─ sort-button.html
+│  │  │  │  │  │  │  ├─ sort-button.spec.ts
+│  │  │  │  │  │  │  └─ sort-button.ts
+│  │  │  │  │  │  └─ task-item
+│  │  │  │  │  │     ├─ task-item.css
+│  │  │  │  │  │     ├─ task-item.html
+│  │  │  │  │  │     ├─ task-item.spec.ts
+│  │  │  │  │  │     └─ task-item.ts
 │  │  │  │  │  ├─ task-page.css
 │  │  │  │  │  ├─ task-page.html
 │  │  │  │  │  ├─ task-page.spec.ts
 │  │  │  │  │  └─ task-page.ts
-│  │  │  │  ├─ team-page
-│  │  │  │  │  ├─ team-page.css
-│  │  │  │  │  ├─ team-page.html
-│  │  │  │  │  ├─ team-page.spec.ts
-│  │  │  │  │  └─ team-page.ts
 │  │  │  │  └─ welcome-page
+│  │  │  │     ├─ components
+│  │  │  │     │  ├─ login-section
+│  │  │  │     │  │  ├─ login-section.css
+│  │  │  │     │  │  ├─ login-section.html
+│  │  │  │     │  │  ├─ login-section.spec.ts
+│  │  │  │     │  │  └─ login-section.ts
+│  │  │  │     │  └─ register-section
+│  │  │  │     │     ├─ register-section.css
+│  │  │  │     │     ├─ register-section.html
+│  │  │  │     │     ├─ register-section.spec.ts
+│  │  │  │     │     └─ register-section.ts
 │  │  │  │     ├─ welcome-page.css
 │  │  │  │     ├─ welcome-page.html
 │  │  │  │     ├─ welcome-page.spec.ts
 │  │  │  │     └─ welcome-page.ts
 │  │  │  ├─ register
-│  │  │  │  ├─ register.css
-│  │  │  │  ├─ register.html
-│  │  │  │  ├─ register.spec.ts
-│  │  │  │  └─ register.ts
+│  │  │  │  └─ register.html
 │  │  │  ├─ services
-│  │  │  ├─ shared
-│  │  │  │  ├─ components
-│  │  │  │  │  └─ login-button
-│  │  │  │  │     ├─ login-button.css
-│  │  │  │  │     ├─ login-button.html
-│  │  │  │  │     ├─ login-button.spec.ts
-│  │  │  │  │     └─ login-button.ts
-│  │  │  │  └─ layout
-│  │  │  │     ├─ footer
-│  │  │  │     │  ├─ footer.css
-│  │  │  │     │  ├─ footer.html
-│  │  │  │     │  ├─ footer.spec.ts
-│  │  │  │     │  └─ footer.ts
-│  │  │  │     └─ header
-│  │  │  │        ├─ header.css
-│  │  │  │        ├─ header.html
-│  │  │  │        ├─ header.spec.ts
-│  │  │  │        └─ header.ts
-│  │  │  └─ welcome
-│  │  │     ├─ welcome.css
-│  │  │     ├─ welcome.html
-│  │  │     ├─ welcome.spec.ts
-│  │  │     └─ welcome.ts
+│  │  │  │  ├─ boardService
+│  │  │  │  │  ├─ board-service.spec.ts
+│  │  │  │  │  └─ board-service.ts
+│  │  │  │  └─ taskService
+│  │  │  │     ├─ task-service.spec.ts
+│  │  │  │     └─ task-service.ts
+│  │  │  └─ shared
+│  │  │     ├─ components
+│  │  │     │  ├─ forgotpassword
+│  │  │     │  │  ├─ forgotpassword.css
+│  │  │     │  │  ├─ forgotpassword.html
+│  │  │     │  │  ├─ forgotpassword.spec.ts
+│  │  │     │  │  └─ forgotpassword.ts
+│  │  │     │  ├─ login-button
+│  │  │     │  │  ├─ login-button.css
+│  │  │     │  │  ├─ login-button.html
+│  │  │     │  │  ├─ login-button.spec.ts
+│  │  │     │  │  └─ login-button.ts
+│  │  │     │  ├─ logout-button
+│  │  │     │  │  ├─ logout-button.css
+│  │  │     │  │  ├─ logout-button.html
+│  │  │     │  │  ├─ logout-button.spec.ts
+│  │  │     │  │  └─ logout-button.ts
+│  │  │     │  └─ start-redirect
+│  │  │     │     ├─ start-redirect.css
+│  │  │     │     ├─ start-redirect.html
+│  │  │     │     ├─ start-redirect.spec.ts
+│  │  │     │     └─ start-redirect.ts
+│  │  │     └─ layout
+│  │  │        ├─ footer
+│  │  │        │  ├─ footer.css
+│  │  │        │  ├─ footer.html
+│  │  │        │  ├─ footer.spec.ts
+│  │  │        │  └─ footer.ts
+│  │  │        └─ header
+│  │  │           ├─ header.css
+│  │  │           ├─ header.html
+│  │  │           ├─ header.spec.ts
+│  │  │           └─ header.ts
 │  │  ├─ index.html
 │  │  ├─ main.ts
 │  │  └─ styles.css
