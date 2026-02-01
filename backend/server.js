@@ -28,6 +28,14 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
+app.get("/health", (req, res) => {
+  res.status(200).json({ 
+    status: "ok", 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
 app.use("/boards", boardsRoutes);
 app.use("/project", projectRoutes);
 app.use("/lists", listsRoutes);
@@ -37,5 +45,6 @@ app.use('/task', tasksRoutes);
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000; 
-app.listen(PORT,'0.0.0.0', () => {console.log(`API Trello running on http://taskifydb.c1sgsamwsjxd.eu-north-1.rds.amazonaws.com:${PORT}`);
-                                 });
+app.listen(PORT,'0.0.0.0', () => {
+  console.log(`API Trello running on http://taskifydb.c1sgsamwsjxd.eu-north-1.rds.amazonaws.com:${PORT}`);
+});
