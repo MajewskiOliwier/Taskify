@@ -6,8 +6,8 @@ export default defineConfig({
     port: 4200,
     allowedHosts: [
       'localhost',
-      '.elb.amazonaws.com',  // Permetti tutti gli host AWS ELB
-      '.execute-api.us-east-1.amazonaws.com'  // Permetti API Gateway
+      'test-taskify-frontend-lb-2028155531.us-east-1.elb.amazonaws.com'
+      // '.execute-api.us-east-1.amazonaws.com'  // Permetti API Gateway
     ]
   }
 });
