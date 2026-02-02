@@ -16,10 +16,24 @@ const tasksRoutes = require("./src/routes/task.routes");
 
 const app = express();
 
+// CORS configuration - accetta richieste da API Gateway e frontend
 const corsOptions = {
-  origin: 'http://localhost:4200', 
+  origin: function (origin, callback) {
+    // API Gateway non invia un header Origin, quindi origin sarà undefined
+    // Permetti anche localhost per sviluppo locale
+    const allowedOrigins = [
+      'http://localhost:4200',
+      process.env.FRONTEND_URL
+    ];
+    
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, true);  // Permetti tutto temporaneamente
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Amz-Date', 'X-Api-Key', 'X-Amz-Security-Token'],
   credentials: true
 };
 app.use(cors(corsOptions));
@@ -46,5 +60,5 @@ app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000; 
 app.listen(PORT,'0.0.0.0', () => {
-  console.log(`API Trello running on http://taskifydb.c1sgsamwsjxd.eu-north-1.rds.amazonaws.com:${PORT}`);
+  console.log(`API running on port ${PORT}`);
 });
