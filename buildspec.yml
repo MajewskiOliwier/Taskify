@@ -18,7 +18,7 @@ phases:
       - cd backend
       - docker build -t $ECR_REPO .
       - docker tag $ECR_REPO:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
-
+      - cd ..
   post_build:
     commands:
       - echo Push Docker image
@@ -27,9 +27,9 @@ phases:
         $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
         > imagedefinitions.json
       
-
+      - ls -la
       - cat imagedefinitions.json
 
 artifacts:
   files:
-    - backend/imagedefinitions.json
+    - imagedefinitions.json
