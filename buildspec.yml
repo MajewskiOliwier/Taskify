@@ -26,8 +26,11 @@ phases:
       - printf '[{"name":"backend","imageUri":"%s"}]'
         $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
         > imagedefinitions.json
+      
+    
+      - ls -la
       - cat imagedefinitions.json
 
 artifacts:
   files:
-    - backend/imagedefinitions.json
+    - imagedefinitions.json
