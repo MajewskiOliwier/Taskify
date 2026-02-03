@@ -3,6 +3,7 @@ import { LogoutButton } from "../../components/logout-button/logout-button";
 import { HttpClient } from '@angular/common/http';
 import { NavigationEnd, Router  } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -32,7 +33,7 @@ export class Header implements OnInit {
   }
 
   checkAuthentication() {
-    const url = 'http://localhost:3000/api/auth/verify';
+    const url = `${environment.apiUrl}/api/auth/verify`;
     this.http.get(url, { withCredentials: true })
       .subscribe({
         next: (res: any) => {

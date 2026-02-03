@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-delete-task-confirmation',
@@ -24,7 +25,7 @@ export class DeleteTaskConfirmation {
     this.loading = true;
 
     this.http.delete(
-      `http://localhost:3000/task/${this.taskId}`,
+      `${environment.apiUrl}/task/${this.taskId}`,
       { withCredentials: true }
     ).subscribe({
       next: () => {

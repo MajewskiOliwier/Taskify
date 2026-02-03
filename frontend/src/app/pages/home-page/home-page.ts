@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProjectListItem } from './team-list-item/team-list-item';
 import { ActivatedRoute } from '@angular/router';
 import { AddProjectForm } from "./add-project-form/add-project-form";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home-page',
@@ -28,7 +29,7 @@ export class HomePage implements OnInit {
   }
 
   loadTeams(): void {
-    const url = `http://localhost:3000/project/${this.userID}`;
+    const url = `${environment.apiUrl}/project/${this.userID}`;
     
     this.http.get<any[]>(url, { withCredentials: true }
     ).subscribe({

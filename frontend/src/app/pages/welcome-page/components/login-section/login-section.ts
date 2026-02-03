@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-login-section',
@@ -21,7 +22,7 @@ export class LoginSection {
     this.email = email ?? this.email;
     this.password = password ?? this.password;
 
-    const url = 'http://localhost:3000/api/auth/login';
+    const url = `${environment.apiUrl}/api/auth/login`;
     this.http.post(url, { email: this.email, password: this.password }, { withCredentials: true })
       .subscribe({
         next: (res: any) => {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Forgotpassword } from '../../shared/components/forgotpassword/forgotpassword';
 import { LoginSection } from "./components/login-section/login-section";
 import { RegisterSection } from './components/register-section/register-section';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-welcome-page',
@@ -30,7 +31,7 @@ export class WelcomePage implements OnInit {
   }
 
   checkAuthentication() {
-    const url = 'http://localhost:3000/api/auth/verify';
+    const url = `${environment.apiUrl}/api/auth/verify`;
     this.http.get(url, { withCredentials: true })
       .subscribe({
         next: (res: any) => {

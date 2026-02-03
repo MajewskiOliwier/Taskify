@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AddTaskForm } from "./add-task-form/add-task-form";
 import { EditTaskForm } from "./edit-task-form/edit-task-form";
 import { DeleteTaskConfirmation } from "./delete-task-confirmation/delete-task-confirmation";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-team-page',
@@ -43,7 +44,7 @@ export class ProjectPage implements OnInit {
     this.isLoading = true;
 
     this.http.get<any[]>(
-      `http://localhost:3000/project/${this.projectID}/columns`,
+      `${environment.apiUrl}/project/${this.projectID}/columns`,
       { withCredentials: true }
     ).subscribe(columns => {
 
@@ -60,7 +61,7 @@ export class ProjectPage implements OnInit {
       }
 
       this.http.get<any[]>(
-        `http://localhost:3000/task/project/${this.projectID}`,
+        `${environment.apiUrl}/task/project/${this.projectID}`,
         { withCredentials: true }
       ).subscribe(tasks => {
 
@@ -77,7 +78,7 @@ export class ProjectPage implements OnInit {
 
   moveTask(task: any, targetColumnID: string): void {
     this.http.put(
-      `http://localhost:3000/task/${task.id_task}/project/${this.projectID}/move`,
+      `${environment.apiUrl}/task/${task.id_task}/project/${this.projectID}/move`,
       { targetColumnID },
       { withCredentials: true }
     ).subscribe(() => {

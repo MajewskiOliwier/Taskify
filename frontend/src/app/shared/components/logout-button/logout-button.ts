@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-logout-button',
@@ -30,7 +31,7 @@ export class LogoutButton {
     
   // }
   logout(): void {
-    const url = 'http://localhost:3000/api/auth/logout';
+    const url = `${environment.apiUrl}/api/auth/logout`;
 
     this.http.post(url, {}, { withCredentials: true })
       .subscribe({

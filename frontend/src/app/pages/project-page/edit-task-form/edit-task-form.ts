@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-edit-task-form',
@@ -31,7 +32,7 @@ export class EditTaskForm {
     this.loading = true;
 
     this.http.put(
-      `http://localhost:3000/task/${this.task.id_task}`,
+      `${environment.apiUrl}/task/${this.task.id_task}`,
       {
         title: this.title,
         description: this.description

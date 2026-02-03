@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-add-task-form',
@@ -27,7 +28,7 @@ export class AddTaskForm {
     this.loading = true;
 
     this.http.post(
-      `http://localhost:3000/task/project/${this.projectID}`,
+      `${environment.apiUrl}/task/project/${this.projectID}`,
       { title: this.title, description: this.description },
       { withCredentials: true }
     ).subscribe({

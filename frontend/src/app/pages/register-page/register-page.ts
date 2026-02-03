@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register-page',
@@ -16,7 +17,7 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
   isLoading: boolean = false;
-  private readonly apiUrl = 'http://localhost:3000/api/auth/register';
+  private readonly apiUrl = `${environment.apiUrl}/api/auth/register`;
 
   constructor(
     private fb: FormBuilder,

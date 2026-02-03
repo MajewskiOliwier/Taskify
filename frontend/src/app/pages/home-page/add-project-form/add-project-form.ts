@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-add-project-form',
@@ -31,7 +32,7 @@ export class AddProjectForm{
 
     this.loading = true;
 
-    const url = `http://localhost:3000/project/${this.userID}`;
+    const url = `${environment.apiUrl}/project/${this.userID}`;
 
     this.http.post(
       url,
