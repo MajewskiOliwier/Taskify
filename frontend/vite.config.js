@@ -9,5 +9,6 @@ export default defineConfig({
       'test-taskify-frontend-lb-2028155531.us-east-1.elb.amazonaws.com',
       '.elb.amazonaws.com'
     ]
+    hmr: false
   }
 });
