@@ -8,13 +8,6 @@ export default defineConfig({
       'localhost',
       'test-taskify-frontend-lb-2028155531.us-east-1.elb.amazonaws.com',
       '.elb.amazonaws.com'
-    ],
-    hmr: {
-      clientPort: 80,
-      host: 'test-taskify-frontend-lb-2028155531.us-east-1.elb.amazonaws.com'
-    }
-  },
-  optimizeDeps: {
-    force: true
+    ]
   }
 });
