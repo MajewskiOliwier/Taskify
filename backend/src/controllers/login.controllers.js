@@ -41,7 +41,7 @@ module.exports = {
             const cookieOptions = {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: 'lax',
+                sameSite: 'None',
                 maxAge: 60 * 60 * 1000
             };
 
@@ -84,7 +84,7 @@ module.exports = {
         res.clearCookie('token', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax'
+            sameSite: 'None'
         });
         res.status(200).json({ message: 'Déconnexion réussie.' });
     },
