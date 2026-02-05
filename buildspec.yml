@@ -23,13 +23,21 @@ phases:
     commands:
       - echo Push Docker image
       - docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
+      
+      # Create imagedefinitions.json for CodeDeploy
       - printf '[{"name":"taskify_backend_task_v1","imageUri":"%s"}]'
         $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
         > imagedefinitions.json
       
+      - echo "Listing artifacts..."
       - ls -la
+      - echo "imagedefinitions.json content:"
       - cat imagedefinitions.json
+      - echo "taskdef.json content:"
+      - cat taskdef.json
 
 artifacts:
   files:
     - imagedefinitions.json
+    # Task definition with health check
+    - taskdef.json 
