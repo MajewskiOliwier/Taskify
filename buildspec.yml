@@ -23,7 +23,7 @@ phases:
     commands:
       - echo Push Docker image
       - docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
-      - printf '[{"name":"taskify_backend_task_v1"","imageUri":"%s"}]'
+      - printf '[{"name":"taskify_backend_task_v1","imageUri":"%s"}]'
         $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
         > imagedefinitions.json
       

@@ -3,6 +3,8 @@ FROM public.ecr.aws/docker/library/node:20-alpine AS build
 
 WORKDIR /app
 
+RUN apk add --no-cache curl
+
 COPY package*.json ./
 
 RUN npm ci
